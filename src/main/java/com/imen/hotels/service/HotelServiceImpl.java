@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import com.imen.hotels.entities.Hotel;
+import com.imen.hotels.entities.TypeHotel;
 import com.imen.hotels.repos.HotelRepository;
 
 @Service
@@ -49,4 +50,43 @@ public class HotelServiceImpl implements HotelService {
         return hotelRepository.findAll(PageRequest.of(page, size));
     }
 
+    @Override
+    public List<Hotel> findByNomHotel(String nom) {
+        return hotelRepository.findByNomHotel(nom);
+    }
+
+    @Override
+    public List<Hotel> findByNomHotelContains(String nom) {
+        return hotelRepository.findByNomHotelContains(nom);
+    }
+
+    @Override
+    public List<Hotel> findByNomPrix(String nom, Double prix) {
+        return hotelRepository.findByNomPrix(nom, prix);
+    }
+
+    @Override
+    public List<Hotel> findByNomPrixParam(String nom, Double prix) {
+        return hotelRepository.findByNomPrixParam(nom, prix);
+    }
+
+    @Override
+    public List<Hotel> findByTypeHotel(TypeHotel typeHotel) {
+        return hotelRepository.findByTypeHotel(typeHotel);
+    }
+
+    @Override
+    public List<Hotel> findByTypeHotelIdType(Long id) {
+        return hotelRepository.findByTypeHotelIdType(id);
+    }
+
+    @Override
+    public List<Hotel> findByOrderByNomHotelAsc() {
+        return hotelRepository.findByOrderByNomHotelAsc();
+    }
+
+    @Override
+    public List<Hotel> trierHotelsNomsPrix() {
+        return hotelRepository.trierHotelsNomsPrix();
+    }
 }

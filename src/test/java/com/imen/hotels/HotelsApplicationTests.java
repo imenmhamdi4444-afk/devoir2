@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import com.imen.hotels.entities.Hotel;
+import com.imen.hotels.entities.TypeHotel;
 import com.imen.hotels.repos.HotelRepository;
 import com.imen.hotels.service.HotelService;
 
@@ -19,34 +20,68 @@ class HotelsApplicationTests {
     private HotelService hotelService;
 
     @Test
-    public void testCreateLuxuryHotel() {
-        Hotel hotel = new Hotel("Burj Al Arab", "Dubai", 1500.000, 7);
-        hotelRepository.save(hotel);
+    public void testFindByNomHotel() {
+        List<Hotel> hotels = hotelRepository.findByNomHotel("Hilton Paris");
+        for (Hotel h : hotels) {
+            System.out.println(h);
+        }
     }
 
     @Test
-    public void testFindHotelById() {
-        Hotel hotel = hotelRepository.findById(1L).get();
-        System.out.println("Hotel found by ID: " + hotel);
+    public void testFindByNomHotelContains() {
+        List<Hotel> hotels = hotelRepository.findByNomHotelContains("Hotel");
+        for (Hotel h : hotels) {
+            System.out.println(h);
+        }
     }
 
     @Test
-    public void testUpdateHotel() {
-        Hotel hotel = hotelRepository.findById(1L).get();
-        hotel.setPrixNuit(300.0);
-        hotelRepository.save(hotel);
+    public void testFindByNomPrix() {
+        List<Hotel> hotels = hotelRepository.findByNomPrix("Marhaba", 100.0);
+        for (Hotel h : hotels) {
+            System.out.println(h);
+        }
     }
 
     @Test
-    public void testDeleteHotel() {
-        hotelRepository.deleteById(1L);
+    public void testFindByNomPrixParam() {
+        List<Hotel> hotels = hotelRepository.findByNomPrixParam("Marhaba", 100.0);
+        for (Hotel h : hotels) {
+            System.out.println(h);
+        }
     }
 
     @Test
-    public void testListAllHotels() {
-        List<Hotel> hotels = hotelRepository.findAll();
-        for (Hotel hotel : hotels) {
-            System.out.println(hotel);
+    public void testFindByTypeHotel() {
+        TypeHotel type = new TypeHotel();
+        type.setIdType(3L);
+        List<Hotel> hotels = hotelRepository.findByTypeHotel(type);
+        for (Hotel h : hotels) {
+            System.out.println(h);
+        }
+    }
+
+    @Test
+    public void testFindByTypeHotelIdType() {
+        List<Hotel> hotels = hotelRepository.findByTypeHotelIdType(3L);
+        for (Hotel h : hotels) {
+            System.out.println(h);
+        }
+    }
+
+    @Test
+    public void testFindByOrderByNomHotelAsc() {
+        List<Hotel> hotels = hotelRepository.findByOrderByNomHotelAsc();
+        for (Hotel h : hotels) {
+            System.out.println(h);
+        }
+    }
+
+    @Test
+    public void testTrierHotelsNomsPrix() {
+        List<Hotel> hotels = hotelRepository.trierHotelsNomsPrix();
+        for (Hotel h : hotels) {
+            System.out.println(h);
         }
     }
 

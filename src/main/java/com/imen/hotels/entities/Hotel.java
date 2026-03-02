@@ -4,6 +4,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue; 
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Hotel {
@@ -16,6 +17,8 @@ public class Hotel {
 	private Double prixNuit;
 	private int etoiles;
 	
+	@ManyToOne
+	private TypeHotel typeHotel;
 	
 	public Hotel() {
 		super();

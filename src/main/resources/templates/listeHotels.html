@@ -17,7 +17,13 @@
         <div class="card-body">
             <table class="table table-striped">
                 <tr>
-                    <th>ID</th><th>Nom Hotel</th><th>Ville</th><th>Prix Nuit</th><th>Etoiles</th><th>Action</th>
+                    <th>ID</th>
+                    <th>Nom Hotel</th>
+                    <th>Ville</th>
+                    <th>Prix Nuit</th>
+                    <th>Etoiles</th>
+                    <th>Type Hotel</th>
+                    <th>Action</th>
                 </tr>
                 <tr th:each="h:${hotels.content}">
                     <td th:text="${h.idHotel}"></td>
@@ -25,10 +31,15 @@
                     <td th:text="${h.ville}"></td>
                     <td th:text="${h.prixNuit}"></td>
                     <td th:text="${h.etoiles}"></td>
-                    <td><a class="btn btn-danger"
-                           onclick="return confirm('Etes-vous sûr ?')"
-                           th:href="@{supprimerHotel(id=${h.idHotel},
-                           page=${currentPage},size=${size})}">Supprimer</a></td>
+                    <td th:if="${!#strings.isEmpty(h.typeHotel)}" th:text="${h.typeHotel.nomType}"></td>
+                    <td th:if="${#strings.isEmpty(h.typeHotel)}" th:text="'Pas de Type'"></td>
+					<td>
+					    <a class="btn btn-success"
+					       th:href="@{modifierHotel(id=${h.idHotel},page=${currentPage},size=${size})}">Editer</a>
+					    <a class="btn btn-danger"
+					       onclick="return confirm('Etes-vous sûr ?')"
+					       th:href="@{supprimerHotel(id=${h.idHotel},page=${currentPage},size=${size})}">Supprimer</a>
+					</td>
                 </tr>
             </table>
             <ul class="nav nav-pills">

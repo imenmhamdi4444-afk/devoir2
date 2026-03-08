@@ -21,4 +21,5 @@ public interface HotelService {
     List<Hotel> findByTypeHotelIdType(Long id);
     List<Hotel> findByOrderByNomHotelAsc();
     List<Hotel> trierHotelsNomsPrix();
+    List<TypeHotel> getAllTypeHotels();
 }

@@ -63,7 +63,7 @@ class HotelsApplicationTests {
 
     @Test
     public void testFindByTypeHotelIdType() {
-        List<Hotel> hotels = hotelRepository.findByTypeHotelIdType(3L);
+        List<Hotel> hotels = hotelRepository.findByTypeHotelIdType(4L);
         for (Hotel h : hotels) {
             System.out.println(h);
         }

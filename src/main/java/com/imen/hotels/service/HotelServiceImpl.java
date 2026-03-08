@@ -8,9 +8,18 @@ import org.springframework.data.domain.PageRequest;
 import com.imen.hotels.entities.Hotel;
 import com.imen.hotels.entities.TypeHotel;
 import com.imen.hotels.repos.HotelRepository;
+import com.imen.hotels.repos.TypeHotelRepository;
 
 @Service
 public class HotelServiceImpl implements HotelService {
+	
+	@Autowired
+	TypeHotelRepository typeHotelRepository;
+
+	@Override
+	public List<TypeHotel> getAllTypeHotels() {
+	    return typeHotelRepository.findAll();
+	}
 
     @Autowired
     HotelRepository hotelRepository;
